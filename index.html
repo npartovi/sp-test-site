@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <script src="https://dev.sdk.helloextend.com/extend-sdk-client/3a7f9f2c00601a0d6abc3e7a51ce60f58a239b0c/extend-sdk-client.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+</html>
+<form id="product-form" action="/cart/add">
+  <div id="extend-shipping-offer"></div>
+  <button id="add-to-cart" type="submit">Add To Cart</button>
+  <!-- <button id="call-endpoint" type="submit">Call Endpoint</button> -->
+</form>
+<!-- <script>
+  Extend.config({
+    storeId: "91d2eeab-8848-49b9-8e8f-ba48a47ced1d",
+    environment: "acceptance",
+  });
+</script> -->
+<script>
+  Extend.config({
+    storeId: "91d2eeab-8848-49b9-8e8f-ba48a47ced1d",
+    environment: "acceptance",
+  });
+
+  Extend.shippingProtection.render({
+    selector: "#extend-shipping-offer",
+    items: [
+      {
+        referenceId: "1-a-90004",
+        quantity: 1,
+        purchasePrice: 100000,
+        productName: "Intelligent Steel Fish 1",
+      },
+      {
+        referenceId: "5-a-90005",
+        quantity: 1,
+        purchasePrice: 500000,
+        productName: "Ergonomic Steel Chicken 5",
+      },
+    ],
+    isShippingProtectionInCart: false,
+    onEnable: function ({ quote, isToggled }) {
+      console.log("call back to add SP plan to cart", quote);
+    },
+    onDisable: function ({ quote, isToggled }) {
+      console.log("call back to remove sp plan from cart", quote);
+    },
+  });
+</script>
